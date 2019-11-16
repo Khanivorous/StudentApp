@@ -9,18 +9,22 @@ sourceCompatibility = 1.8
 // Versioning of dependencies
 wrapper.gradleVersion = '5.5.1'
 def cucumberVersion = '4.8.0'
-def junitVersion = '4.12'
+def junitVersion = '5.5.2'
 def gherkinVersion = '8.2.0'
 repositories {
+    jcenter()
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
     testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
     testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
     testImplementation "io.cucumber:cucumber-core:${cucumberVersion}"
     testImplementation "io.cucumber:gherkin:${gherkinVersion}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:${junitVersion}"
 
 }
 
