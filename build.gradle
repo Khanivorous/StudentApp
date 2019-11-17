@@ -19,8 +19,6 @@ repositories {
 dependencies {
     testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
     testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
-    testImplementation "io.cucumber:cucumber-core:${cucumberVersion}"
-    testImplementation "io.cucumber:gherkin:${gherkinVersion}"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
@@ -28,7 +26,6 @@ dependencies {
 
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
     testCompile group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.2.0'
-
 
 }
 
