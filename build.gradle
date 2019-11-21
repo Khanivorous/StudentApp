@@ -21,16 +21,16 @@ dependencies {
 
     implementation"com.squareup.okhttp3:okhttp:${okhttpVersion}"
 
-    testImplementation"com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
     testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
     testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation group: "org.mockito:mockito-core:2.1.0"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:${junitVersion}"
 
-    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
-    testCompile group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.2.0'
+
 
 }
 
