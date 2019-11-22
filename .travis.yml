@@ -1,7 +1,8 @@
 sudo: true
 language: java
 dist: bionic
-jdk: oraclejdk8
+jdk:
+  - openjdk10
 
 
 stages:
