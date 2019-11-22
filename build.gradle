@@ -26,11 +26,9 @@ dependencies {
     testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testImplementation group: "org.mockito:mockito-core:2.1.0"
+    testImplementation "org.mockito:mockito-core:2.1.0"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:${junitVersion}"
-
-
 
 }
 
