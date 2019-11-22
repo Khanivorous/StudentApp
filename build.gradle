@@ -20,7 +20,6 @@ repositories {
 
 jacoco {
     toolVersion = "0.8.5"
-    reportsDir = file("$buildDir/customJacocoReportDir")
 }
 jacocoTestReport {
     reports {
@@ -46,10 +45,6 @@ dependencies {
 }
 
 test {
-    jacoco {
-        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
-        classDumpDir = file("$buildDir/jacoco/classpathdumps")
-    }
     useJUnitPlatform()
 }
 

@@ -16,13 +16,15 @@ jobs:
     script: "./gradlew test"
   - stage: cucumber_test
     name: Cucumber Tests
-    script: "./gradlew cucumber"
+    script:
+    - "./gradlew cucumber"
+    - "./gradlew jacocoTestReport"
     os:
     - linux
     - osx
 after_success:
 - bash <(curl -s https://codecov.io/bash)
-- "./gradlew jacocoTestReport"
+
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
