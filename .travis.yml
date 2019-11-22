@@ -13,12 +13,11 @@ jobs:
   include:
   - stage: test
     name: Unit Tests
-    script: "./gradlew test"
+    script: "./gradlew test jacocoTestReport"
   - stage: cucumber_test
     name: Cucumber Tests
     script:
     - "./gradlew cucumber"
-    - "./gradlew jacocoTestReport"
     os:
     - linux
     - osx
