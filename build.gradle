@@ -12,6 +12,7 @@ wrapper.gradleVersion = '5.5.1'
 def cucumberVersion = '4.8.0'
 def junitVersion = '5.5.2'
 def okhttpVersion = '4.2.2'
+def retrofitVersion ='2.1.0'
 
 repositories {
     jcenter()
@@ -32,6 +33,8 @@ jacocoTestReport {
 dependencies {
 
     implementation"com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
 
     testImplementation "com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
     testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
