@@ -2,38 +2,35 @@ sudo: true
 language: java
 dist: bionic
 jdk:
-  - openjdk10
-
-
+- openjdk10
 stages:
 - test
 - cucumber_test
-
 env:
   global:
     secure: Cn1s935dA3wFJH2EsbAVJXOG1y07EHkhuMesUsTC6HPEFNYvpWKO/vOZHbjQB0nW6z44O6Go4J7jGE9AFLQZSwgeVPuuJau3/+SPB3f/XNO1BG7DgTVyYebRnjT5LbqdRBkwOPPhfWOrMCz7eAYRlMrVbTYbMtJnw5tzTJlfualbvPXoP/vGthNLOoFe3/TXHN/KiJxkxDj+nGDpfqGiW1zdpZhBNWtfNuBalkUz3CnKMdVHicVo08t0qX2xy+cWIC7O8WZyirY+g1HhkKVmdCFhNSsWDWvSOL0gOEwan+BDOpCzvSCzZh23discfO1KdYM3N8/1dmRNZc+/l+vW8iF7N9jA+VQ7TKmGSpbuKEMMqTqpPL/PzlFN+ChcJ9h8Bam3mbuqPC/UlhzsVzqevdwl0Iu4xQV9R76qUpw6+QxbBAlawJ1ghqKqr0j/8vud5CnYOV2PjQVlEdtHP1T67WRRbvsmklHcN4o5s+ntq2pdf9XDEoRxAsu8e/i2djhB3h0/rs1QDi6yO8vcEMAGS5r42TtyLCAkq92fjQOqJj/jM/r8+n//fImRTOLRFm+NgOZmeaoRpalaKSf08hWAiibCNwMlRTpsBZnbvNzBzPovQXqDRy0Hl6lV0uS3f2tclN0lFUmDDcC2iZaoRMwA9apPuym6l18RO3UiyqrNCgM=
-
 jobs:
   include:
-    - stage: test
-      name: "Unit Tests"
-      script: ./gradlew test
-
-    - stage: cucumber_test
-      name: "Cucumber Tests"
-      script: ./gradlew cucumber
-      os:
-        - linux
-        - osx
-
+  - stage: test
+    name: Unit Tests
+    script: "./gradlew test"
+  - stage: cucumber_test
+    name: Cucumber Tests
+    script: "./gradlew cucumber"
+    os:
+    - linux
+    - osx
 after_success:
 - bash <(curl -s https://codecov.io/bash)
-- ./gradlew jacocoTestReport
-
+- "./gradlew jacocoTestReport"
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+notifications:
+  email:
+    recipients:
+      secure: aLcxSExw6W45KrpOjYO4EkDXsIuSGAfa4tJH1O14VYYsx8rjuHqVVq2TexOsdEu6ycQD8sVpy3jN/owG5e68+yQfZV2amGn5MMdDbHVEgv6sqmy1kHq7ilWulaugVd3GPKPjeP0lc+baxyygavchx7F+UiJYA/H8hxCyjaoan/oe7/0IH5r32KjIgzUvaZAdDUgJBaf8+MnNvBYIP361YMPU9rBfhmFSghAFvhH/grxyZNEPgfd1vmuuTI6dCXkBJfG/CdWehexBIsKmNK+M9VO8kervxaWesovufUXozmvkAsuT2ggsHUzokRkMkFHtzqi6VrGkBcly8pQKQs7Y0q7TxoPdygTOLniveg+CDcK0qfDNWoX6CbMztz34M1tRIpt22CxBr8DKhwwt5wBtJelyM17vFD6QoEIF8eWAb+AgOGmQbUf03tniJO2IYkM9Xjgzy0yisncVzq1j6PC0VO+cdYRM2tARCOls8KkFFfcnPcrsPXZlcgXMFM7DOzNtqsD/lWc0WORy1e2+gIpPluQFcNYIMrGFAzCl5Yse5/ddCs0sbyXd83v1iJ2EEbxSc45tJtsifLZJpANPb3AAXsaFI3ijkPfdE+sX4lr/clZONXZKezFXL2ecrA4RMgy2ahYMykjVithldaS+L4KXXRTYQ5UDLxyyMtBkbwCao4A=
