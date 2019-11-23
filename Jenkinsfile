@@ -3,9 +3,17 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        sh './gradlew cucumber'
+       script {
+         sh './gradlew test jacocoTestReport'
+       }
       }
     }
-
+    stage('cucumber') {
+      steps {
+        script{
+          sh './gradlew cucumber'
+        }
+      }
+    }
   }
 }

@@ -1,7 +1,8 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
-
+//apply from: "./jacoco.gradle"
 group 'com.khanivorous.studentapp'
 version '1.0-SNAPSHOT'
 
@@ -10,22 +11,40 @@ sourceCompatibility = 1.8
 wrapper.gradleVersion = '5.5.1'
 def cucumberVersion = '4.8.0'
 def junitVersion = '5.5.2'
+def okHttpVersion = '4.2.2'
+def retrofitVersion ='2.1.0'
+def mockitoVersion = '3.1.0'
 
 repositories {
     jcenter()
     mavenCentral()
 }
 
+jacoco {
+    toolVersion = "0.8.5"
+}
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled true
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
 dependencies {
+
+    implementation"com.squareup.okhttp3:okhttp:${okHttpVersion}"
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+
+    testImplementation "com.squareup.okhttp3:mockwebserver:${okHttpVersion}"
     testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
     testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:${junitVersion}"
-
-    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
-    testCompile group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.2.0'
 
 }
 
