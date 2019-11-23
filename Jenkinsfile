@@ -26,8 +26,19 @@ pipeline {
     }
 
     stage('Artifacts') {
-      steps {
-        archiveArtifacts(onlyIfSuccessful: true, allowEmptyArchive: true, artifacts: 'build/libs/*.jar')
+      parallel {
+        stage('Artifacts') {
+          steps {
+            archiveArtifacts(onlyIfSuccessful: true, allowEmptyArchive: true, artifacts: 'build/libs/*.jar')
+          }
+        }
+
+        stage('Publish Jacoco Reports') {
+          steps {
+            jacoco(exclusionPattern: 'src/test*', classPattern: 'target/classes', execPattern: 'target/*.exec', sourcePattern: 'src/main/java')
+          }
+        }
+
       }
     }
 
