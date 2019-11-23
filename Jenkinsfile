@@ -3,25 +3,33 @@ pipeline {
   stages {
     stage('test') {
       steps {
-       script {
-         sh './gradlew test jacocoTestReport'
-       }
+        script {
+          sh './gradlew test jacocoTestReport'
+        }
+
       }
     }
+
     stage('cucumber') {
       steps {
-        script{
+        script {
           sh './gradlew cucumber'
         }
+
       }
     }
-    stage ('Cucumber Reports') {
 
+    stage('Cucumber Reports') {
       steps {
-        cucumber buildStatus: "UNSTABLE",
-         fileIncludePattern: "**/cucumber.json",
-         jsonReportDirectory: 'target'
-         }
-       }
+        cucumber(buildStatus: 'UNSTABLE', fileIncludePattern: '**/cucumber.json', jsonReportDirectory: 'target')
+      }
+    }
+
+    stage('Artifacts') {
+      steps {
+        archiveArtifacts(onlyIfSuccessful: true, allowEmptyArchive: true, artifacts: 'build/libs/*.jar')
+      }
+    }
+
   }
 }
