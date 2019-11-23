@@ -3,12 +3,16 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        './gradlew test jacocoTestReport'
+       script {
+         sh './gradlew test jacocoTestReport'
+       }
       }
     }
     stage('cucumber') {
       steps {
-        './gradlew cucumber'
+        script{
+          sh './gradlew cucumber'
+        }
       }
     }
   }
