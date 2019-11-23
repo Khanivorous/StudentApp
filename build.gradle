@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'jacoco'
 }
-//apply from: "./jacoco.gradle"
+
 group 'com.khanivorous.studentapp'
 version '1.0-SNAPSHOT'
 jar {
