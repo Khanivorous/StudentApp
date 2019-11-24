@@ -17,7 +17,7 @@ jobs:
   - stage: cucumber_test
     name: Cucumber Tests
     script:
-    - "./gradlew cucumber"
+    - "./gradlew test cucumber"
     os:
     - linux
     - osx

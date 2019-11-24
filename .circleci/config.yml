@@ -65,9 +65,9 @@ jobs:
           key: v1-gradle-cache-{{ checksum "build.gradle" }}
       - run:
           name: run cucumber tests
-          command: ./gradlew cucumber
+          command: ./gradlew test cucumber
       - store_test_results:
-          path: target/cucumber
+          path: target/cucumber.xml
 
 workflows:
   version: 2
