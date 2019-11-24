@@ -51,13 +51,11 @@ public class StepDefinitions {
                         .setResponseCode(200)
                         .setBody(ID_2));
         }
-//        Call<StudentModel> studentModelCall = service.getStudentById(string);
     }
 
 
     @Then("I print the students Barry and {int} to the command line")
     public void i_print_the_students_Barry_and_to_the_command_line(Integer int1) throws IOException {
-        MockWebServer mockWebServer = new MockWebServer();
         String expected = "Name: Barry, Age: "+int1.toString();
 
         Call<StudentModel> studentModelCall = service.getStudentById("1");
@@ -71,7 +69,6 @@ public class StepDefinitions {
 
     @Then("I print the students Sheila and {int} to the command line")
     public void i_print_the_students_Sheila_and_to_the_command_line(Integer int1) throws IOException {
-        MockWebServer mockWebServer = new MockWebServer();
         String expected = "Name: Sheila, Age: "+int1.toString();
 
         Call<StudentModel> studentModelCall = service.getStudentById("2");
