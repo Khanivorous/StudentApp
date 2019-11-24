@@ -42,9 +42,9 @@ pipeline {
       }
     }
 
-    stage('') {
+    stage('email results') {
       steps {
-        emailext(body: '${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\\n More info at: ${env.BUILD_URL}', subject: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}')
+        emailext(body: '${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\\n More info at: ${env.BUILD_URL}', subject: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}', to: 'taherul_khan@hotmail.co.uk', from: 'Jenkins@jenkins')
       }
     }
 
