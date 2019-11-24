@@ -24,25 +24,19 @@ jobs:
       - store_artifacts:
           path: build/libs
   test:
-    environment:
-      _JAVA_OPTIONS: "-Xmx3g"
-        GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
-        docker:
-          - image: circleci/openjdk:11.0.3-jdk-stretch
-        steps:
-          - run:
-              name: run unit tests
-              command: ./gradlew test jacocoTestReport
+    docker:
+      - image: circleci/openjdk:11.0.3-jdk-stretch
+    steps:
+      - run:
+          name: run unit tests
+          command: ./gradlew test jacocoTestReport
   cucumber:
-    environment:
-      _JAVA_OPTIONS: "-Xmx3g"
-        GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
-        docker: # run the steps with Docker
-          - image: circleci/openjdk:11.0.3-jdk-stretch
-        steps:
-          - run:
-              name: run cucumber tests
-              command: ./gradlew cucumber
+    docker:
+      - image: circleci/openjdk:11.0.3-jdk-stretch
+    steps:
+      - run:
+          name: run cucumber tests
+          command: ./gradlew cucumber
 workflows:
   version: 2
   workflow:
