@@ -27,6 +27,19 @@ jobs:
     docker:
       - image: circleci/openjdk:11.0.3-jdk-stretch
     steps:
+      - checkout
+      - restore_cache:
+          key: v1-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+      - restore_cache:
+          key: v1-gradle-cache-{{ checksum "build.gradle" }}
+      - save_cache:
+          paths:
+            - ~/.gradle/wrapper
+          key: v1-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+      - save_cache:
+          paths:
+            - ~/.gradle/caches
+          key: v1-gradle-cache-{{ checksum "build.gradle" }}
       - run:
           name: run unit tests
           command: ./gradlew test jacocoTestReport
@@ -34,12 +47,26 @@ jobs:
     docker:
       - image: circleci/openjdk:11.0.3-jdk-stretch
     steps:
+      - checkout
+      - restore_cache:
+          key: v1-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+      - restore_cache:
+          key: v1-gradle-cache-{{ checksum "build.gradle" }}
+      - save_cache:
+          paths:
+            - ~/.gradle/wrapper
+          key: v1-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+      - save_cache:
+          paths:
+            - ~/.gradle/caches
+          key: v1-gradle-cache-{{ checksum "build.gradle" }}
       - run:
           name: run cucumber tests
           command: ./gradlew cucumber
 workflows:
   version: 2
-  workflow:
+  build_and_test:
     jobs:
       - build
       - test
+      - cucumber
