@@ -43,6 +43,9 @@ jobs:
       - run:
           name: run unit tests
           command: ./gradlew test jacocoTestReport
+      - store_test_results:
+          path: build/test-results/test/*.xml
+
   cucumber:
     docker:
       - image: circleci/openjdk:11.0.3-jdk-stretch
@@ -63,6 +66,9 @@ jobs:
       - run:
           name: run cucumber tests
           command: ./gradlew cucumber
+      - store_test_results:
+          path: target/cucumber/cucumber.json
+
 workflows:
   version: 2
   build_and_test:
