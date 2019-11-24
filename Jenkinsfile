@@ -47,6 +47,10 @@ pipeline {
         emailext(body: 'Job ${PROJECT_NAME} build ${BUILD_NUMBER} \n\nMore info at: ${BUILD_URL}', subject: 'Jenkins Build $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'taherul_khan@hotmail.co.uk')
       }
     }
-
+    post {
+        always {
+            junit 'build/test-results/**/*.xml'
+        }
+    }
   }
 }
