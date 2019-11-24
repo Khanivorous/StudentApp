@@ -19,21 +19,21 @@ pipeline {
       }
     }
 
-    stage('Cucumber Reports') {
+    stage('cucumber reports') {
       steps {
         cucumber(buildStatus: 'UNSTABLE', fileIncludePattern: '**/cucumber.json', jsonReportDirectory: 'target')
       }
     }
 
-    stage('Artifacts') {
+    stage('artifacts') {
       parallel {
-        stage('Artifacts') {
+        stage('artifacts') {
           steps {
             archiveArtifacts(onlyIfSuccessful: true, allowEmptyArchive: true, artifacts: 'build/libs/*.jar')
           }
         }
 
-        stage('Publish Jacoco Reports') {
+        stage('publish jacoco reports') {
           steps {
             jacoco(exclusionPattern: 'src/test*', classPattern: 'target/classes', execPattern: 'target/*.exec', sourcePattern: 'src/main/java')
           }
