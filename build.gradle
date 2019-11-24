@@ -2,10 +2,16 @@ plugins {
     id 'java'
     id 'jacoco'
 }
-//apply from: "./jacoco.gradle"
+
 group 'com.khanivorous.studentapp'
 version '1.0-SNAPSHOT'
-
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'PrintStudentInformation'
+        )
+    }
+}
 sourceCompatibility = 1.8
 // Versioning of dependencies
 wrapper.gradleVersion = '5.5.1'
