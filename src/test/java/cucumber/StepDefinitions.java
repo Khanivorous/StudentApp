@@ -1,13 +1,11 @@
 package cucumber;
 
-import com.khanivrous.app.PrintStudentInformation;
 import com.khanivrous.app.StudentService;
 import com.khanivrous.app.models.StudentModel;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import okhttp3.HttpUrl;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import retrofit2.Call;
@@ -61,14 +59,13 @@ public class StepDefinitions {
     public void i_print_the_students_Barry_and_to_the_command_line(Integer int1) throws IOException {
         MockWebServer mockWebServer = new MockWebServer();
         String expected = "Name: Barry, Age: "+int1.toString();
-        mockWebServer.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody(ID_1));
+
         Call<StudentModel> studentModelCall = service.getStudentById("1");
         Response<StudentModel> response = studentModelCall.execute();
         StudentModel student = response.body();
+
         String studentResponseString = "Name: " + student.getName() + ", Age: " + student.getAge();
-        System.out.println(studentResponseString);
+
         assertEquals(expected,studentResponseString);
     }
 
@@ -76,14 +73,13 @@ public class StepDefinitions {
     public void i_print_the_students_Sheila_and_to_the_command_line(Integer int1) throws IOException {
         MockWebServer mockWebServer = new MockWebServer();
         String expected = "Name: Sheila, Age: "+int1.toString();
-        mockWebServer.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody(ID_2));
+
         Call<StudentModel> studentModelCall = service.getStudentById("2");
         Response<StudentModel> response = studentModelCall.execute();
         StudentModel student = response.body();
+
         String studentResponseString = "Name: " + student.getName() + ", Age: " + student.getAge();
-        System.out.println(studentResponseString);
+
         assertEquals(expected,studentResponseString);
     }
 
