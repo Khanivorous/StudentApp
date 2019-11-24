@@ -22,7 +22,7 @@ jobs:
           command: ./gradlew assemble
       # As the JAR was only assembled in the first build container, build/libs will be empty in all the other build containers.
       - store_artifacts:
-          path: build/libs
+          path: build/libs/*.jar
   test:
     docker:
       - image: circleci/openjdk:11.0.3-jdk-stretch
@@ -67,7 +67,7 @@ jobs:
           name: run cucumber tests
           command: ./gradlew cucumber
       - store_test_results:
-          path: target/cucumber/cucumber.json
+          path: target/cucumber.json
 
 workflows:
   version: 2
