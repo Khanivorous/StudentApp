@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('test') {
+    stage('unit test') {
       steps {
         script {
           sh './gradlew test jacocoTestReport'
@@ -10,7 +10,7 @@ pipeline {
       }
     }
 
-    stage('cucumber') {
+    stage('cucumber test') {
       steps {
         script {
           sh './gradlew cucumber'
