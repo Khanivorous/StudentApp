@@ -7,8 +7,8 @@ Feature: Get complete student information from web service
 
     Examples:
       | id |name|age|
-      | 1  |Barry|20|
-      | 2  |Sheila|19|
+      | "1"  |Barry|20|
+      | "2"  |Sheila|19|
 
   Scenario Outline: Get all students information
     Given I send a GET request to the students api
