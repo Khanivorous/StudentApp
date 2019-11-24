@@ -71,7 +71,7 @@ jobs:
           name: run cucumber tests
           command: ./gradlew test cucumber
       - store_test_results:
-          path: target/*.xml
+          path: target/
 
 workflows:
   version: 2
