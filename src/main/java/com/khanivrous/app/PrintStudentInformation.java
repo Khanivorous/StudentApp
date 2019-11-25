@@ -9,7 +9,6 @@ import java.util.List;
 
 public class PrintStudentInformation {
     public static void main(String[] args) {
-        System.out.println("This is a skeleton project right now");
         StudentService service = StudentServiceGenerator.createService(StudentService.class);
         printStudentDetailsById("1",service);
         printAllStudentsDetails(service);

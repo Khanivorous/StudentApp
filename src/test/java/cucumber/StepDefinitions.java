@@ -1,6 +1,5 @@
 package cucumber;
 
-import com.khanivrous.app.PrintStudentInformation;
 import com.khanivrous.app.StudentService;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -14,7 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.IOException;
 
 import static com.khanivrous.app.PrintStudentInformation.*;
-import static com.khanivrous.app.PrintStudentInformation.printAllStudentsDetails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
