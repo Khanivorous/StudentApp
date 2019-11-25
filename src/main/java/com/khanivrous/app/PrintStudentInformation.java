@@ -28,21 +28,5 @@ public class PrintStudentInformation {
         return studentResponseString;
     }
 
-//        studentModelCall.enqueue(new Callback<StudentModel>() {
-//            @Override
-//            public void onResponse(Call<StudentModel> call, Response<StudentModel> response) {
-//                String studentResponseString = "";
-//                StudentModel student = response.body();
-//                studentResponseString += "Name: "+student.getName()+", Age: "+student.getAge();
-//                System.out.println(studentResponseString);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<StudentModel> call, Throwable t) {
-//                System.out.println(t);
-//            }
-//        });
-//
-//    }
 }
 
