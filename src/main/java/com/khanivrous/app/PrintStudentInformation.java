@@ -12,6 +12,7 @@ public class PrintStudentInformation {
         System.out.println("This is a skeleton project right now");
         StudentService service = StudentServiceGenerator.createService(StudentService.class);
         printStudentDetailsById("1",service);
+        printAllStudentsDetails(service);
     }
 
     public static String printStudentDetailsById(String id, StudentService service) {
@@ -42,7 +43,7 @@ public class PrintStudentInformation {
         List<Student> students = response.body();
 
         for (int i = 0; i < students.size(); i++) {
-            responseString += "Name: "+students.get(i).getName() + ", Age: " +students.get(i).getAge()+"/n";
+            responseString += "Name: "+students.get(i).getName() + ", Age: " +students.get(i).getAge()+"\n";
         }
         System.out.println(responseString);
         return responseString;
