@@ -9,13 +9,19 @@ import java.io.IOException;
 public class PrintStudentInformation {
     public static void main(String[] args) {
         System.out.println("This is a skeleton project right now");
+        StudentService service = StudentServiceGenerator.createService(StudentService.class);
+        printStudentDetailsById("1",service);
     }
 
-    public static String printStudentDetailsById(String id) throws IOException {
-        StudentService service = StudentServiceGenerator.createService(StudentService.class);
+    public static String printStudentDetailsById(String id, StudentService service) {
         Call<StudentModel> studentModelCall = service.getStudentById(id);
 
-        Response<StudentModel> response = studentModelCall.execute();
+        Response<StudentModel> response = null;
+        try {
+            response = studentModelCall.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         StudentModel student = response.body();
         String studentResponseString = "Name: " + student.getName() + ", Age: " + student.getAge();
         System.out.println(studentResponseString);

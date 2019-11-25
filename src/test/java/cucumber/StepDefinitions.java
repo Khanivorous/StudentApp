@@ -1,15 +1,13 @@
 package cucumber;
 
+import com.khanivrous.app.PrintStudentInformation;
 import com.khanivrous.app.StudentService;
-import com.khanivrous.app.models.StudentModel;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -57,27 +55,13 @@ public class StepDefinitions {
     @Then("I print the students Barry and {int} to the command line")
     public void i_print_the_students_Barry_and_to_the_command_line(Integer int1) throws IOException {
         String expected = "Name: Barry, Age: "+int1.toString();
-
-        Call<StudentModel> studentModelCall = service.getStudentById("1");
-        Response<StudentModel> response = studentModelCall.execute();
-        StudentModel student = response.body();
-
-        String studentResponseString = "Name: " + student.getName() + ", Age: " + student.getAge();
-
-        assertEquals(expected,studentResponseString);
+        assertEquals(expected,PrintStudentInformation.printStudentDetailsById("1",service));
     }
 
     @Then("I print the students Sheila and {int} to the command line")
     public void i_print_the_students_Sheila_and_to_the_command_line(Integer int1) throws IOException {
         String expected = "Name: Sheila, Age: "+int1.toString();
-
-        Call<StudentModel> studentModelCall = service.getStudentById("2");
-        Response<StudentModel> response = studentModelCall.execute();
-        StudentModel student = response.body();
-
-        String studentResponseString = "Name: " + student.getName() + ", Age: " + student.getAge();
-
-        assertEquals(expected,studentResponseString);
+        assertEquals(expected,PrintStudentInformation.printStudentDetailsById("2",service));
     }
 
     @Given("I send a successful GET request to the students api")
