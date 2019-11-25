@@ -18,7 +18,7 @@ wrapper.gradleVersion = '5.5.1'
 def cucumberVersion = '4.8.0'
 def junitVersion = '5.5.2'
 def okHttpVersion = '4.2.2'
-def retrofitVersion ='2.1.0'
+def retrofitVersion ='2.6.2'
 def mockitoVersion = '3.1.0'
 
 repositories {
@@ -39,9 +39,10 @@ jacocoTestReport {
 
 dependencies {
 
-    implementation"com.squareup.okhttp3:okhttp:${okHttpVersion}"
+    implementation "com.squareup.okhttp3:okhttp:${okHttpVersion}"
     implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
 
     testImplementation "com.squareup.okhttp3:mockwebserver:${okHttpVersion}"
     testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"

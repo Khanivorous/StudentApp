@@ -3,7 +3,7 @@ package com.khanivrous.app.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class StudentModel {
+public class Student {
 
     @SerializedName("id")
     @Expose

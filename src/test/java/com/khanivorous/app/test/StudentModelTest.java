@@ -1,6 +1,6 @@
 package com.khanivorous.app.test;
 
-import com.khanivrous.app.models.StudentModel;
+import com.khanivrous.app.models.Student;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,7 +9,7 @@ public class StudentModelTest {
 
     @Test
     public void testStudentConstructor() {
-        StudentModel student = new StudentModel();
+        Student student = new Student();
         student.setId(3);
         student.setAge(32);
         student.setName("George");
