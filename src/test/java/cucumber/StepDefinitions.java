@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
@@ -39,7 +40,10 @@ public class StepDefinitions {
     @Given("I send a successful GET request to the students api at path {string}")
     public void i_send_a_successful_GET_request_to_the_students_api_at_path(String string) throws IOException {
         MockWebServer mockWebServer = new MockWebServer();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(mockWebServer.url("/")).addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(mockWebServer.url("/"))
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
         service = retrofit.create(StudentService.class);
         switch (string){
             case "1":
@@ -70,7 +74,10 @@ public class StepDefinitions {
     @Given("I send a successful GET request to the students api")
     public void i_send_a_successful_GET_request_to_the_students_api() {
         MockWebServer mockWebServer = new MockWebServer();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(mockWebServer.url("/")).addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(mockWebServer.url("/"))
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
         service = retrofit.create(StudentService.class);
         mockWebServer.enqueue(new MockResponse()
                 .setResponseCode(200)
