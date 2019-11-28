@@ -7,9 +7,11 @@ import retrofit2.Response;
 import java.io.IOException;
 import java.util.List;
 
+import static com.khanivrous.app.StudentServiceGenerator.*;
+
 public class PrintStudentInformation {
     public static void main(String[] args) {
-        StudentService service = StudentServiceGenerator.createService(StudentService.class);
+        StudentService service = createService(StudentService.class);
         printStudentDetailsById("1",service);
         printAllStudentsDetails(service);
     }
