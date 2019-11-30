@@ -1,12 +1,13 @@
 package com.khanivrous.app;
 
-import static com.khanivrous.app.StudentServiceGenerator.createService;
+import static com.khanivrous.app.StudentApi.*;
+import static com.khanivrous.app.StudentApi.createService;
 
 public class PrintStudentInformation {
     public static void main(String[] args) {
-        StudentService service = createService(StudentService.class);
-        StudentServiceGenerator.printStudentDetailsById("1",service);
-        StudentServiceGenerator.printAllStudentsDetails(service);
+        StudentApiService service = createService(StudentApiService.class);
+        System.out.println(getStudentById("1",service));
+        System.out.println(getAllStudents(service));
     }
 
 }

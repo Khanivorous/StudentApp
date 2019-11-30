@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.List;
 
-public class StudentServiceGenerator {
+public class StudentApi {
 
     private static final String BASE_URL = "http://localhost:3000/";
 
@@ -24,22 +24,20 @@ public class StudentServiceGenerator {
         return retrofit.create(serviceClass);
     }
 
-    public static String printStudentDetailsById(String id, StudentService service) {
+    public static String getStudentById(String id, StudentApiService service) {
         Observable<Student> studentCall = service.getStudentById(id);
-        Student student = (Student) studentCall.blockingSingle();
+        Student student = studentCall.blockingFirst();
         String studentResponseString = "Name: " + student.getName() + ", Age: " + student.getAge();
-        System.out.println(studentResponseString);
         return studentResponseString;
     }
 
-    public static String printAllStudentsDetails(StudentService service) {
+    public static String getAllStudents(StudentApiService service) {
         Observable<List<Student>> studentCall = service.getAllStudents();
         String responseString = "";
-        List<Student> students = studentCall.blockingSingle();
+        List<Student> students = studentCall.blockingFirst();
         for (int i = 0; i < students.size(); i++) {
             responseString += "Name: "+students.get(i).getName() + ", Age: " +students.get(i).getAge()+"\n";
         }
-        System.out.println(responseString);
         return responseString;
     }
 }

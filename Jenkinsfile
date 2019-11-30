@@ -35,7 +35,7 @@ pipeline {
 
         stage('publish jacoco reports') {
           steps {
-            jacoco(exclusionPattern: 'src/test*', classPattern: 'build/classes/java/main', execPattern: 'build/jacoco/*.exec', sourcePattern: 'src/main/java')
+            jacoco(exclusionPattern: ['src/test*','src/main/java/com/khanivorous/app/PrintStudentInformation.java'], classPattern: 'build/classes/java/main', execPattern: 'build/jacoco/*.exec', sourcePattern: 'src/main/java')
           }
         }
 

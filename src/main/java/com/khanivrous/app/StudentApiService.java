@@ -8,7 +8,7 @@ import retrofit2.http.Path;
 import java.util.List;
 
 
-public interface StudentService {
+public interface StudentApiService {
 
     @GET("students/{id}")
     Observable<Student> getStudentById(@Path("id") String path);

@@ -1,6 +1,6 @@
 package cucumber;
 
-import com.khanivrous.app.StudentService;
+import com.khanivrous.app.StudentApiService;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -13,13 +13,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 
-import static com.khanivrous.app.StudentServiceGenerator.*;
+import static com.khanivrous.app.StudentApi.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StepDefinitions {
 
-    private StudentService service;
+    private StudentApiService service;
     private String ID_1 = "{\"id\": 1,\"name\": \"Barry\",\"age\": 20}";
     private String ID_2 = "{\"id\": 2,\"name\": \"Sheila\",\"age\": 19}";
 
@@ -44,7 +44,7 @@ public class StepDefinitions {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
-        service = retrofit.create(StudentService.class);
+        service = retrofit.create(StudentApiService.class);
         switch (string){
             case "1":
                 mockWebServer.enqueue(new MockResponse()
@@ -62,13 +62,13 @@ public class StepDefinitions {
     @Then("I print the students Barry and {int} to the command line")
     public void i_print_the_students_Barry_and_to_the_command_line(Integer int1) throws IOException {
         String expected = "Name: Barry, Age: "+int1.toString();
-        assertEquals(expected, printStudentDetailsById("1",service));
+        assertEquals(expected, getStudentById("1",service));
     }
 
     @Then("I print the students Sheila and {int} to the command line")
     public void i_print_the_students_Sheila_and_to_the_command_line(Integer int1) throws IOException {
         String expected = "Name: Sheila, Age: "+int1.toString();
-        assertEquals(expected, printStudentDetailsById("2",service));
+        assertEquals(expected, getStudentById("2",service));
     }
 
     @Given("I send a successful GET request to the students api")
@@ -78,7 +78,7 @@ public class StepDefinitions {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
-        service = retrofit.create(StudentService.class);
+        service = retrofit.create(StudentApiService.class);
         mockWebServer.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(STUDENT_LIST));
@@ -87,12 +87,12 @@ public class StepDefinitions {
     @Then("I print all the students Barry and {int}")
     public void i_print_all_the_students_Barry_and(Integer int1) {
         String expected = "Name: Barry, Age: "+int1.toString();
-        assertTrue(printAllStudentsDetails(service).contains(expected));
+        assertTrue(getAllStudents(service).contains(expected));
     }
 
     @Then("I print all the students Sheila and {int}")
     public void i_print_all_the_students_Sheila_and(Integer int1) {
         String expected = "Name: Sheila, Age: "+int1.toString();
-        assertTrue(printAllStudentsDetails(service).contains(expected));
+        assertTrue(getAllStudents(service).contains(expected));
     }
 }
