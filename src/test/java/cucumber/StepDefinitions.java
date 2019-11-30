@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 
-import static com.khanivrous.app.PrintStudentInformation.*;
+import static com.khanivrous.app.StudentServiceGenerator.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
