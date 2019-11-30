@@ -47,8 +47,6 @@ jobs:
           command: ./gradlew test --tests 'com.khanivorous.app.test*' jacocoTestReport
       - store_test_results:
           path: build/test-results/test/
-      - codecov/upload:
-          file: build/reports/jacoco/test/*.xml
 
   cucumber:
     docker:
@@ -69,9 +67,11 @@ jobs:
           key: v1-gradle-cache-{{ checksum "build.gradle" }}
       - run:
           name: run cucumber tests
-          command: ./gradlew cucumber jacocoTestReport
+          command: ./gradlew test cucumber jacocoTestReport
       - store_test_results:
           path: build/
+      - codecov/upload:
+          file: build/reports/jacoco/test/*.xml
 
 workflows:
   version: 2
