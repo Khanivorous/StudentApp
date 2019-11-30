@@ -67,7 +67,7 @@ jobs:
           key: v1-gradle-cache-{{ checksum "build.gradle" }}
       - run:
           name: run cucumber tests
-          command: ./gradlew cucumber jacocoTestReport
+          command: ./gradlew test cucumber jacocoTestReport
       - store_test_results:
           path: build/
       - codecov/upload:
