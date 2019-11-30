@@ -4,7 +4,7 @@ pipeline {
     stage('unit test') {
       steps {
         script {
-          sh './gradlew test jacocoTestReport'
+          sh ' ./gradlew test --tests "com.khanivorous.app.test*" '
         }
 
       }
@@ -13,7 +13,16 @@ pipeline {
     stage('cucumber test') {
       steps {
         script {
-          sh './gradlew test cucumber'
+          sh './gradlew cucumber'
+        }
+
+      }
+    }
+
+    stage('jacoco reports') {
+      steps {
+        script {
+          sh './gradlew jacocoTestReport'
         }
 
       }

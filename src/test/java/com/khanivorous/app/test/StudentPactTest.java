@@ -52,9 +52,8 @@ public class StudentPactTest {
     @Test
     @PactVerification({"StudentsApi"})
     public void shouldProcessStudentPayload() {
-
         Student student = service.getStudentById("1").blockingFirst();
-        System.out.println("Name is: "+student.getName());
-        assertEquals("Barry",student.getName());
+        assertEquals("Barry", student.getName());
+        assertEquals(20, student.getAge());
     }
 }
