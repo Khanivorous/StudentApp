@@ -13,7 +13,7 @@ pipeline {
     stage('cucumber test') {
       steps {
         script {
-          sh './gradlew cucumber jacocoTestReport'
+          sh './gradlew cucumber'
         }
 
       }
@@ -21,7 +21,7 @@ pipeline {
 
     stage('cucumber reports') {
       steps {
-        cucumber(buildStatus: 'UNSTABLE', fileIncludePattern: 'reports/cucumber/cucumber.json', jsonReportDirectory: 'build')
+        cucumber(buildStatus: 'UNSTABLE', fileIncludePattern: '**/cucumber.json', jsonReportDirectory: 'build')
       }
     }
 
