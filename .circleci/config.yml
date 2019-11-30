@@ -44,7 +44,7 @@ jobs:
           key: v1-gradle-cache-{{ checksum "build.gradle" }}
       - run:
           name: run unit tests
-          command: ./gradlew test --tests 'com.khanivorous.app.test*' jacocoTestReport
+          command: ./gradlew test --tests 'com.khanivorous.app.test*'
       - store_test_results:
           path: build/test-results/test/
 

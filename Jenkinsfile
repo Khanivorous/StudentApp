@@ -4,7 +4,7 @@ pipeline {
     stage('unit test') {
       steps {
         script {
-          sh ' ./gradlew test --tests "com.khanivorous.app.test*" jacocoTestReport'
+          sh ' ./gradlew test --tests "com.khanivorous.app.test*"'
         }
 
       }
