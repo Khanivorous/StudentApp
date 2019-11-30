@@ -13,7 +13,7 @@ pipeline {
     stage('cucumber test') {
       steps {
         script {
-          sh './gradlew cucumber'
+          sh './gradlew cucumber jacocoTestReport'
         }
 
       }

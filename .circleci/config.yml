@@ -71,7 +71,7 @@ jobs:
           name: run cucumber tests
           command: ./gradlew cucumber jacocoTestReport
       - store_test_results:
-          path: target/
+          path: build/
 
 workflows:
   version: 2
