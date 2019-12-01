@@ -4,7 +4,7 @@ pipeline {
     stage('unit test') {
       steps {
         script {
-          sh './gradlew test jacocoTestReport'
+          sh ' ./gradlew test --tests "com.khanivorous.app.test*"'
         }
 
       }
@@ -13,7 +13,7 @@ pipeline {
     stage('cucumber test') {
       steps {
         script {
-          sh './gradlew test cucumber'
+          sh './gradlew test cucumber jacocoTestReport'
         }
 
       }
@@ -21,7 +21,7 @@ pipeline {
 
     stage('cucumber reports') {
       steps {
-        cucumber(buildStatus: 'UNSTABLE', fileIncludePattern: '**/cucumber.json', jsonReportDirectory: 'target')
+        cucumber(buildStatus: 'UNSTABLE', fileIncludePattern: '**/cucumber.json', jsonReportDirectory: 'build')
       }
     }
 

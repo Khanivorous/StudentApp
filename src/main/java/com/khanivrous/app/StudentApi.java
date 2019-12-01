@@ -11,7 +11,7 @@ import java.util.List;
 
 public class StudentApi {
 
-    private static final String BASE_URL = "http://localhost:3000/";
+    private static final String BASE_URL = "http://localhost:3000";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     private static Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
