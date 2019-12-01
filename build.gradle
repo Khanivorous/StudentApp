@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'au.com.dius.pact' version '4.0.3'
 }
 
 group 'com.khanivorous.studentapp'
@@ -47,6 +48,7 @@ dependencies {
     testImplementation "com.squareup.okhttp3:mockwebserver:${okHttpVersion}"
     testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
     testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+    testImplementation "au.com.dius:pact-jvm-consumer-junit:4.0.3"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testImplementation "org.mockito:mockito-core:${mockitoVersion}"
@@ -74,7 +76,14 @@ task cucumber() {
         javaexec {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', 'cucumber', 'src/test/resources']
+            args = ['--plugin', 'pretty', '--plugin', 'html:build/reports/cucumber', '--plugin', 'json:build/reports/cucumber.json', '--plugin', 'junit:build/test-results/test/TEST-cucumber.RunCucumberTest.xml', '--glue', 'cucumber', 'src/test/resources']
         }
+    }
+}
+
+pact {
+    publish {// defaults to $buildDir/pacts
+        pactBrokerUrl = 'https://khanivorous.pact.dius.com.au'
+        pactBrokerToken = 'DGzOtD6hCQIHqfJb1VohNQ'
     }
 }
