@@ -83,5 +83,7 @@ task cucumber() {
 
 pact {
     publish {// defaults to $buildDir/pacts
+        pactBrokerUrl = 'https://khanivorous.pact.dius.com.au'
+        pactBrokerToken = 'DGzOtD6hCQIHqfJb1VohNQ'
     }
 }
