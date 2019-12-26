@@ -1,9 +1,7 @@
 package com.khanivrous.app;
 
 import com.khanivrous.app.models.Student;
-import io.reactivex.Observable;
 import io.reactivex.Single;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
