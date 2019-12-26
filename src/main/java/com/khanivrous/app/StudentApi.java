@@ -2,6 +2,7 @@ package com.khanivrous.app;
 
 import com.khanivrous.app.models.Student;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -26,15 +27,15 @@ public class StudentApi {
     }
 
     public static String getStudentById(String id, StudentApiService service) {
-        Observable<Student> studentCall = service.getStudentById(id);
-        Student student = studentCall.blockingFirst();
-        return new StringBuilder().append("Name: ").append(student.getName()).append(", Age: ").append(student.getAge()).toString();
+        Single<Student> studentCall = service.getStudentById(id);
+        Student student = studentCall.blockingGet();
+        return "Name: " + student.getName() + ", Age: " + student.getAge();
     }
 
     public static String getAllStudents(StudentApiService service) {
-        Observable<List<Student>> studentCall = service.getAllStudents();
+        Single<List<Student>> studentCall = service.getAllStudents();
         StringBuilder responseString = new StringBuilder();
-        List<Student> students = studentCall.blockingFirst();
+        List<Student> students = studentCall.blockingGet();
         for (Student student : students) {
             responseString.append("Name: ").append(student.getName()).append(", Age: ").append(student.getAge()).append("\n");
         }
